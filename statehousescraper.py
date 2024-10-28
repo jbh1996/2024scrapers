@@ -36,7 +36,6 @@ for key in     {
     csv_string = csv_string + key + ","
 csv_string = csv_string + "\n"
 url_list = [ 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001766&osn=8091&county=45&party=0',
-'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001766&osn=8091&county=45&party=0',
 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001695&osn=8020&county=07&party=0',
 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001766&osn=8091&county=32&party=0',
 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001766&osn=8091&county=24&party=0',
