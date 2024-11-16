@@ -64,6 +64,7 @@ def county_scraper(link):
 
 
 for url in url_list:
+    time.sleep(0.1)
     csv_string = csv_string + county_scraper(url)
 now = datetime.now()
 datetime = now.strftime("%Y-%m-%d %H:%M:%S")

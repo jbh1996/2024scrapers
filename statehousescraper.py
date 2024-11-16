@@ -59,23 +59,24 @@ url_list = [ 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&categ
 'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=HOUSE&category=PREC&raceID=450000000001694&osn=8019&county=07&party=0']
 
 def county_scraper(link):
-    temp_string = ""
-    driver = webdriver.Chrome()
-    driver.get(link)
-    time.sleep(0.1)
-    page = driver.page_source
-    soup = BeautifulSoup(page, 'html.parser')
-    raw_data = soup.find("pre")
-    json_string = raw_data.text
-    dictionary = json.loads(json_string)
-    for item_dict in dictionary["d"]:
-        for dictionary_key in item_dict:
-            temp_string = temp_string + str(item_dict[dictionary_key]) + ","
-        temp_string = temp_string + "\n"
-    return temp_string
+        temp_string = ""
+        driver = webdriver.Chrome()
+        driver.get(link)
+        time.sleep(0.1)
+        page = driver.page_source
+        soup = BeautifulSoup(page, 'html.parser')
+        raw_data = soup.find("pre")
+        json_string = raw_data.text
+        dictionary = json.loads(json_string)
+        for item_dict in dictionary["d"]:
+            for dictionary_key in item_dict:
+                temp_string = temp_string + str(item_dict[dictionary_key]) + ","
+            temp_string = temp_string + "\n"
+        return temp_string
 
 
 for url in url_list:
+    time.sleep(0.2)
     csv_string = csv_string + county_scraper(url)
 now = datetime.now()
 datetime = now.strftime("%Y-%m-%d %H:%M:%S")
