@@ -1,6 +1,7 @@
 from selenium import webdriver
 from datetime import datetime
 import time
+import os
 from bs4 import BeautifulSoup
 import json
 import pandas as pd
@@ -73,3 +74,5 @@ outfile_temp.write(csv_string)
 df = pd.read_csv(f'Tester{datetime}.csv')
 # df.drop_duplicates(inplace=True)
 df.to_csv(f'Tester{datetime}.csv')
+file_path = os.path.abspath(f'Tester{datetime}.csv')
+print(file_path)

@@ -3,7 +3,6 @@ from datetime import datetime
 import time
 from bs4 import BeautifulSoup
 import json
-import os
 import pandas as pd
 csv_string = ""
 for key in     {
@@ -36,30 +35,12 @@ for key in     {
     }:
     csv_string = csv_string + key + ","
 csv_string = csv_string + "\n"
-num_list = ["01",
-12,
-15,
-16,
-18,
-20,
-24,
-27,
-28,
-31,
-32,
-37,
-39,
-41,
-45,
-47]
 url_list = []
-for number in num_list:
-    url_list.append(
-        f'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=FED&category=PREC&raceID=450000000001603&county={number}&party=0')
-    url_list.append(
-      f'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=FED&category=PREC&raceID=450000000001601&county={number}&party=0')
 
-
+for number in range (1, 10):
+    url_list.append( f'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=STATE&category=PREC&raceID=450000000001607&county=0{number}&party=0')
+for number in range (10, 57):
+    url_list.append(f'https://esersws.mt.gov/ResultsAjax.svc/GetMapData?type=STATE&category=PREC&raceID=450000000001607&county={number}&party=0')
 def county_scraper(link):
     temp_string = ""
     driver = webdriver.Chrome()
@@ -82,10 +63,8 @@ for url in url_list:
     csv_string = csv_string + county_scraper(url)
 now = datetime.now()
 datetime = now.strftime("%Y-%m-%d %H:%M:%S")
-outfile_temp = open(f'2024CongressResults{datetime}.csv', 'w')
+outfile_temp = open(f'Alke{datetime}.csv', 'w')
 outfile_temp.write(csv_string)
-df = pd.read_csv(f'2024CongressResults{datetime}.csv')
+df = pd.read_csv(f'Alke{datetime}.csv')
 # df.drop_duplicates(inplace=True)
-df.to_csv(f'2024CongressResults{datetime}.csv')
-file_path = os.path.abspath(f'2024CongressResults{datetime}.csv')
-print(file_path)
+df.to_csv(f'Alke{datetime}.csv')
